@@ -1,10 +1,8 @@
-const delay = require('./lib/delay')
+const Block = require('./lib/blockchain/Block')
+const Blockchain = require('./lib/blockchain/Blockchain')
 
-console.log('::: app starts here ...')
+const aCoin = new Blockchain()
+aCoin.addNewBlock(new Block('2018-01-02'), { amount: 10 })
+aCoin.addNewBlock(new Block('2018-01-015'), { amount: 10 })
 
-const myFunc = async (req) => {
-    await req
-    console.log('::: resolved!')
-}
-
-myFunc(delay(500))
+console.log(':::', JSON.stringify(aCoin, null, 4))
