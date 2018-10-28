@@ -1,0 +1,33 @@
+{
+  "name": "blockchain-in-js",
+  "version": "1.0.0",
+  "description": "Blockchain in JS example",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atorov/blockchain-in-js.git"
+  },
+  "keywords": [
+    "blockchain",
+    "js",
+    "demo",
+    "example"
+  ],
+  "author": "atorov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atorov/blockchain-in-js/issues"
+  },
+  "homepage": "https://github.com/atorov/blockchain-in-js#readme",
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
+}
