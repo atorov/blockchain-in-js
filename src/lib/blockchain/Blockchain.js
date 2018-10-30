@@ -2,16 +2,14 @@ const Block = require('./Block')
 
 class Blockchain {
     constructor() {
-        this.chain = [this.createGenesisBlock()]
+        this.chain = [Blockchain.createGenesisBlock()]
+        this.difficulty = 3
     }
 
-    createGenesisBlock() {
-        return new Block('2018-01-01', 'Genesis block', null)
-    }
-
-    addNewBlock(newBlock) {
+    addNewBlock(block) {
+        const newBlock = block
         newBlock.prevHash = this.getLatestBlock().hash
-        newBlock.hash = newBlock.calcHash()
+        newBlock.mineBlock(this.difficulty)
         this.chain.push(newBlock)
     }
 
@@ -28,10 +26,11 @@ class Blockchain {
                 if (currBlock.hash !== currBlock.calcHash()) res = false
                 else if (index && currBlock.prevHash !== prevBlock.hash) res = false
             }
-
         })
         return res
     }
 }
+
+Blockchain.createGenesisBlock = () => new Block()
 
 module.exports = Blockchain
