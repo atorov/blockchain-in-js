@@ -1,16 +1,40 @@
 const Block = require('./Block')
+const Transact = require('./Transact')
 
 class Blockchain {
     constructor() {
+        this.difficulty = 4
+        this.miningReward = 100
+
         this.chain = [Blockchain.createGenesisBlock()]
-        this.difficulty = 3
+        this.pendingTransacts = []
     }
 
-    addNewBlock(block) {
-        const newBlock = block
+    createTransact(transact) {
+        this.pendingTransacts.push(transact)
+    }
+
+    minePendingTransacts(rewardAddr) {
+        const newBlock = new Block(this.pendingTransacts)
         newBlock.prevHash = this.getLatestBlock().hash
         newBlock.mineBlock(this.difficulty)
         this.chain.push(newBlock)
+        this.pendingTransacts = [new Transact(null, rewardAddr, this.miningReward)]
+    }
+
+    getBalanceOfAddr(addr) {
+        let balance = 0
+        this.chain.forEach((block) => {
+            block.transacts.forEach((transact) => {
+                if (transact.fromAddr === addr) {
+                    balance -= transact.amount
+                }
+                if (transact.toAddr === addr) {
+                    balance += transact.amount
+                }
+            })
+        })
+        return balance
     }
 
     getLatestBlock() {
