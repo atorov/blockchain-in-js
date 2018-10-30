@@ -1,5 +1,5 @@
 module.exports = {
-    extends: 'airbnb',
+    extends: 'airbnb-base',
     rules: {
         'camelcase': 0,
         'prefer-destructuring': 0,
