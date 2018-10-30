@@ -18,6 +18,20 @@ class Blockchain {
     getLatestBlock() {
         return this.chain[this.chain.length - 1]
     }
+
+    isValid() {
+        let res = true
+        this.chain.forEach((_, index) => {
+            const currBlock = this.chain[index]
+            const prevBlock = this.chain[index - 1]
+            if (res) {
+                if (currBlock.hash !== currBlock.calcHash()) res = false
+                else if (index && currBlock.prevHash !== prevBlock.hash) res = false
+            }
+
+        })
+        return res
+    }
 }
 
 module.exports = Blockchain
