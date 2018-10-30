@@ -16,7 +16,7 @@ class Blockchain {
 
     minePendingTransacts(rewardAddr) {
         const newBlock = new Block(this.pendingTransacts)
-        newBlock.prevHash = this.getLatestBlock().hash
+        newBlock.prevHash = this.chain[this.chain.length - 1].hash
         newBlock.mineBlock(this.difficulty)
         this.chain.push(newBlock)
         this.pendingTransacts = [new Transact(null, rewardAddr, this.miningReward)]
@@ -35,10 +35,6 @@ class Blockchain {
             })
         })
         return balance
-    }
-
-    getLatestBlock() {
-        return this.chain[this.chain.length - 1]
     }
 
     isValid() {

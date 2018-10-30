@@ -1,4 +1,3 @@
-// const Block = require('./lib/blockchain/Block')
 const Blockchain = require('./lib/blockchain/Blockchain')
 const Transact = require('./lib/blockchain/Transact')
 
